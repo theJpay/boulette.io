@@ -1,0 +1,25 @@
+extends:
+    - stylelint-config-standard
+    - stylelint-config-recommended
+    - stylelint-config-rational-order
+    - stylelint-scss
+plugins:
+    - stylelint-scss
+rules:
+    indentation: 4
+    at-rule-no-unknown:
+    declaration-empty-line-before:
+    order/properties-order:
+        - []
+        - severity: warning
+    plugin/rational-order:
+        - true
+        - empty-line-between-groups: true
+    # unknown rules
+    # import-notation:
+    # keyframe-selector-notation:
+    # selector-not-notation:
+    # annotation-no-unknown:
+    # custom-property-no-missing-var-function:
+    # function-no-unknown:
+    # keyframe-block-no-duplicate-selectors:
