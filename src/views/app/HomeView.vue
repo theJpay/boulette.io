@@ -28,7 +28,6 @@
             const { user, isVerified } = useAuthState();
 
             const signOut = async () => {
-                console.log(user.value);
                 await signOutUser();
                 router.push({ name: "login" });
             };
