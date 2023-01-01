@@ -12,6 +12,12 @@ export default defineConfig({
             "@generics": fileURLToPath(
                 new URL("./src/components/generics", import.meta.url)
             ),
+            "@icons": fileURLToPath(
+                new URL(
+                    "./node_modules/@material-symbols/svg-400/rounded",
+                    import.meta.url
+                )
+            ),
         },
     },
 });

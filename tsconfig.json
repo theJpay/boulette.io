@@ -4,8 +4,9 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@generics": ["./src/components/generics"],
-            "@/*": ["./src/*"]
+            "@/*": ["./src/*"],
+            "@generics/*": ["./src/components/generics/*"],
+            "@icons/*": ["./node_modules/@material-symbols/svg-400/rounded/*"]
         }
     },
 
