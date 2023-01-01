@@ -11,6 +11,7 @@ module.exports = {
         "@vue/eslint-config-prettier",
         "plugin:import/errors",
         "plugin:import/warnings",
+        "plugin:storybook/recommended",
     ],
     parserOptions: {
         ecmaVersion: "latest",
@@ -52,7 +53,10 @@ module.exports = {
                 indent: ["error", 4],
                 "sort-imports": [
                     "error",
-                    { ignoreCase: true, ignoreDeclarationSort: true },
+                    {
+                        ignoreCase: true,
+                        ignoreDeclarationSort: true,
+                    },
                 ],
                 "@typescript-eslint/consistent-type-imports": "warn",
                 "@typescript-eslint/no-unused-vars": ["error"],
@@ -62,15 +66,28 @@ module.exports = {
             files: ["*.vue"],
             rules: {
                 indent: "off",
-                "vue/attributes-order": ["warn", { alphabetical: true }],
+                "vue/attributes-order": [
+                    "warn",
+                    {
+                        alphabetical: true,
+                    },
+                ],
                 "vue/html-indent": ["error", 4],
                 "vue/v-on-event-hyphenation": [
                     "error",
                     "always",
-                    { ignore: ["update:modelValue"] },
+                    {
+                        ignore: ["update:modelValue"],
+                    },
                 ],
                 "vue/require-default-prop": "off",
-                "vue/script-indent": ["error", 4, { baseIndent: 1 }],
+                "vue/script-indent": [
+                    "error",
+                    4,
+                    {
+                        baseIndent: 1,
+                    },
+                ],
                 "vue/sort-keys": ["error", "asc"],
             },
         },

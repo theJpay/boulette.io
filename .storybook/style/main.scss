@@ -1,0 +1,11 @@
+@import "../src/assets/css/main.scss";
+
+body {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 100vh !important;
+
+    font-size: 14px;
+    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif !important;
+}

@@ -1,5 +1,6 @@
 @import "./colors.scss";
 @import "./const.scss";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 
 body {
     margin: 0;
@@ -9,7 +10,7 @@ body {
     min-height: 100vh;
 
     font-size: 14px;
-    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif;
+    font-family: Roboto, Avenir, Helvetica, Arial, sans-serif !important;
 
     background-color: var(--neutral-5);
     -webkit-font-smoothing: antialiased;
