@@ -50,7 +50,10 @@ module.exports = {
                     },
                 ],
                 indent: ["error", 4],
-                "sort-imports": ["error", { ignoreDeclarationSort: true }],
+                "sort-imports": [
+                    "error",
+                    { ignoreCase: true, ignoreDeclarationSort: true },
+                ],
                 "@typescript-eslint/consistent-type-imports": "warn",
                 "@typescript-eslint/no-unused-vars": ["error"],
             },
