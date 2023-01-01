@@ -1,26 +1,45 @@
 <template>
     <div class="side-menu">
-        <div class="title">SIDE BAR</div>
-        <LinkAction title="HOME" @click="navigateTo('home')" />
-        <LinkAction title="PROFILE" @click="navigateTo('profile')" />
+        <router-link
+            v-for="item in SIDEBAR_ITEMS"
+            :key="item.title"
+            #="{ isActive }"
+            :to="item.to"
+        >
+            <SideBarItem
+                :icon="item.icon"
+                :isActive="isActive"
+                :title="item.title"
+            ></SideBarItem>
+        </router-link>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "vue";
-    import { useRouter } from "vue-router";
-    import { LinkAction } from "../generics/actions";
+    import draftIcon from "@material-symbols/svg-400/rounded/draft.svg";
+    import settingsIcon from "@icons/settings.svg";
+    import SideBarItem from "./SideBarItem.vue";
+
+    const SIDEBAR_ITEMS = [
+        {
+            icon: draftIcon,
+            title: "My files",
+            to: { name: "home" },
+        },
+        {
+            icon: settingsIcon,
+            title: "Settings",
+            to: { name: "profile" },
+        },
+    ] as const;
 
     export default defineComponent({
-        components: { LinkAction },
+        components: {
+            SideBarItem,
+        },
         setup() {
-            const router = useRouter();
-
-            const navigateTo = (name: string) => {
-                router.push({ name });
-            };
-
-            return { navigateTo };
+            return { SIDEBAR_ITEMS };
         },
     });
 </script>
@@ -37,8 +56,9 @@
         flex-direction: column;
 
         float: left;
-        width: 180px;
+        width: 280px;
+        padding-top: 100px;
 
-        background-color: var(--primary-200);
+        border-right: 1px solid red;
     }
 </style>
