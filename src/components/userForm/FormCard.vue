@@ -24,8 +24,8 @@
 
 <script lang="ts">
     import { defineComponent } from "vue";
-    import { CardBorder } from "@/components/generics/containers";
-    import { InputRegular } from "@/components/generics/inputs";
+    import { CardBorder } from "@generics/containers";
+    import { InputRegular } from "@generics/inputs";
     import FormField from "./FormField.vue";
     import type { PropType } from "vue";
 

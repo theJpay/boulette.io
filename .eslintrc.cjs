@@ -66,6 +66,7 @@ module.exports = {
             files: ["*.vue"],
             rules: {
                 indent: "off",
+                "vue/attribute-hyphenation": "off",
                 "vue/attributes-order": [
                     "warn",
                     {
@@ -98,6 +99,10 @@ module.exports = {
                 map: [
                     ["@", "./src"],
                     ["@generics", "./src/components/generics"],
+                    [
+                        "@icons",
+                        "./node_modules/@material-symbols/svg-400/rounded",
+                    ],
                 ],
                 extensions: [".ts", ".vue"],
             },

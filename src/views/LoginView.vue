@@ -16,7 +16,7 @@
 <script lang="ts">
     import { defineComponent, ref } from "vue";
     import { useRouter } from "vue-router";
-    import { ButtonRegular } from "@/components/generics/actions";
+    import { ButtonRegular } from "@generics/actions";
     import { FormCard } from "@/components/userForm";
     import { signIn } from "@/services/users";
 

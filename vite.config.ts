@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { fileURLToPath, URL } from "node:url";
 
 import { defineConfig } from "vite";
