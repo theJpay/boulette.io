@@ -68,7 +68,9 @@
         border: 1px solid var(--neutral-50);
         border-radius: 18px;
 
-        transition: border-color var(--duration-transition);
+        transition: background-color var(--duration-transition),
+            border-color var(--duration-transition),
+            color var(--duration-transition);
 
         &:hover {
             border-color: var(--neutral-100);

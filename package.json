@@ -8,7 +8,7 @@
         "preview": "vite preview",
         "build-only": "vite build",
         "type-check": "vue-tsc --noEmit",
-        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+        "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore && stylelint \"**/*.(vue|scss|css)\"",
         "storybook": "start-storybook -p 6006",
         "build-storybook": "build-storybook"
     },
@@ -46,6 +46,7 @@
         "sass": "^1.57.1",
         "storybook-vue3-router": "^2.3.1",
         "stylelint": "^13.8",
+        "stylelint-config-prettier": "^9.0.4",
         "stylelint-config-rational-order": "^0.1.2",
         "stylelint-config-standard": "^22",
         "stylelint-scss": "^4.3.0",

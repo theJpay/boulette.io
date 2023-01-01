@@ -78,28 +78,19 @@
 
         &.high-impact {
             @include buttonRegularColors(
-                var(--neutral-0),
+                var(--neutral-900),
                 var(--primary-500),
-                var(--primary-700),
-                var(--neutral-25)
-            );
-        }
-
-        &.medium-impact {
-            @include buttonRegularColors(
-                var(--primary-500),
-                var(--primary-50),
-                var(--primary-100),
+                var(--primary-600),
                 var(--neutral-25)
             );
         }
 
         &.low-impact {
             @include buttonRegularColors(
-                var(--primary-500),
-                transparent,
-                var(--primary-100),
-                transparent
+                var(--primary-600),
+                var(transparent),
+                var(--neutral-5),
+                var(transparent)
             );
         }
 
