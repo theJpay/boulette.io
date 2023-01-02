@@ -42,20 +42,19 @@
 
     .sidebar-link {
         display: flex;
-        gap: 16px;
+        gap: 24px;
         align-items: center;
 
-        padding: 4px 0 4px 24px;
+        padding: 12px 0 12px 24px;
+
+        border-radius: 0 24px 24px 0;
+        cursor: pointer;
 
         @include sideBarItemColors(
             var(--neutral-700),
             transparent,
             var(--neutral-25)
         );
-
-        color: var(--neutral-700);
-
-        border-radius: 0 16px 16px 0;
 
         &.active {
             @include sideBarItemColors(

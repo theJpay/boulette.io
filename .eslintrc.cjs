@@ -74,13 +74,6 @@ module.exports = {
                     },
                 ],
                 "vue/html-indent": ["error", 4],
-                "vue/v-on-event-hyphenation": [
-                    "error",
-                    "always",
-                    {
-                        ignore: ["update:modelValue"],
-                    },
-                ],
                 "vue/require-default-prop": "off",
                 "vue/script-indent": [
                     "error",
@@ -89,7 +82,22 @@ module.exports = {
                         baseIndent: 1,
                     },
                 ],
-                "vue/sort-keys": ["error", "asc"],
+                "vue/html-self-closing": [
+                    "warn",
+                    {
+                        html: {
+                            void: "always",
+                        },
+                    },
+                ],
+                "vue/sort-keys": ["error", "asc", { caseSensitive: false }],
+                "vue/v-on-event-hyphenation": [
+                    "error",
+                    "always",
+                    {
+                        ignore: ["update:modelValue"],
+                    },
+                ],
             },
         },
     ],

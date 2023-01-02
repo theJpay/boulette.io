@@ -1,7 +1,6 @@
 <template>
     <div class="home">
         <h1>Hello {{ user?.displayName }}</h1>
-        <LinkAction title="Sign out" @click="signOut()" />
         <LinkAction
             v-if="!isVerified"
             title="Verification email"
@@ -12,31 +11,19 @@
 
 <script lang="ts">
     import { defineComponent } from "vue";
-    import { useRouter } from "vue-router";
-    import {
-        sendVerificationEmail,
-        signOut as signOutUser,
-        useAuthState,
-    } from "@/services/users";
+    import { sendVerificationEmail, useAuthState } from "@/services/users";
     import { LinkAction } from "@/components/generics/actions";
 
     export default defineComponent({
         components: { LinkAction },
         setup() {
-            const router = useRouter();
-
             const { user, isVerified } = useAuthState();
-
-            const signOut = async () => {
-                await signOutUser();
-                router.push({ name: "login" });
-            };
 
             const onSendVerificationEmail = async () => {
                 await sendVerificationEmail();
             };
 
-            return { isVerified, onSendVerificationEmail, signOut, user };
+            return { isVerified, onSendVerificationEmail, user };
         },
     });
 </script>

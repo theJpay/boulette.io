@@ -1,5 +1,5 @@
 <template>
-    <div class="side-menu">
+    <div class="sidebar">
         <router-link
             v-for="item in SIDEBAR_ITEMS"
             :key="item.title"
@@ -10,15 +10,24 @@
                 :icon="item.icon"
                 :isActive="isActive"
                 :title="item.title"
-            ></SideBarItem>
+            />
         </router-link>
+        <SideBarItem
+            class="sign-out"
+            :icon="logoutIcon"
+            title="Sign out"
+            @click="signOut()"
+        />
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "vue";
-    import draftIcon from "@material-symbols/svg-400/rounded/draft.svg";
+    import { useRouter } from "vue-router";
+    import draftIcon from "@icons/draft.svg";
+    import logoutIcon from "@icons/logout.svg";
     import settingsIcon from "@icons/settings.svg";
+    import { signOut as signOutUser } from "@/services/users";
     import SideBarItem from "./SideBarItem.vue";
 
     const SIDEBAR_ITEMS = [
@@ -39,13 +48,18 @@
             SideBarItem,
         },
         setup() {
-            return { SIDEBAR_ITEMS };
+            const router = useRouter();
+            const signOut = async () => {
+                await signOutUser();
+                router.push({ name: "login" });
+            };
+            return { logoutIcon, SIDEBAR_ITEMS, signOut };
         },
     });
 </script>
 
 <style lang="scss" scoped>
-    .side-menu {
+    .sidebar {
         position: fixed;
         top: 0;
         bottom: 0;
@@ -57,8 +71,10 @@
 
         float: left;
         width: 280px;
-        padding-top: 100px;
+        padding: 100px 0;
 
-        border-right: 1px solid red;
+        .sign-out {
+            margin-top: auto;
+        }
     }
 </style>
