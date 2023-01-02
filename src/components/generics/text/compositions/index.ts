@@ -1,0 +1,1 @@
+export { useTypeText } from "./useTypeText";
