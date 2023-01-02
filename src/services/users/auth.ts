@@ -7,34 +7,11 @@ import {
     signOut as signOutUser,
     updateProfile,
 } from "firebase/auth";
-import { computed, onMounted, onUnmounted, ref } from "vue";
-import type { Unsubscribe, User } from "firebase/auth";
 
-export function useAuthState() {
-    const user = ref<User | null>(null);
-    const error = ref<Error | null>(null);
-
-    const auth = getAuth();
-    let unsubscribe: Unsubscribe;
-    onMounted(() => {
-        unsubscribe = onAuthStateChanged(
-            auth,
-            (u) => (user.value = u),
-            (e) => (error.value = e)
-        );
-    });
-    onUnmounted(() => unsubscribe());
-
-    const isAuthenticated = computed(() => user.value != null);
-    const isVerified = computed(() => !!user.value?.emailVerified);
-
-    return { user, error, isAuthenticated, isVerified };
-}
-
-export async function getUserState() {
-    return new Promise((resolve, reject) =>
+export async function isAuthenticatedUser() {
+    return !!(await new Promise((resolve, reject) =>
         onAuthStateChanged(getAuth(), resolve, reject)
-    );
+    ));
 }
 
 export async function signIn(email: string, password: string) {
