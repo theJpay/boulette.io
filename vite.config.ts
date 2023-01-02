@@ -19,6 +19,9 @@ export default defineConfig({
                     import.meta.url
                 )
             ),
+            "@lambda": fileURLToPath(
+                new URL("./src/tools/lambda", import.meta.url)
+            ),
         },
     },
 });

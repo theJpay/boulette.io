@@ -10,9 +10,6 @@ lerna-debug.log*
 # Firebase config
 src/services/firebaseConfig.ts
 
-# Automatically generated to make the storybook work
-vite.config.js
-
 node_modules
 .DS_Store
 dist

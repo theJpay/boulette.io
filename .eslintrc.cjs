@@ -38,6 +38,11 @@ module.exports = {
                         "newlines-between": "ignore",
                         pathGroups: [
                             {
+                                pattern: "@lambda",
+                                group: "external",
+                                position: "after",
+                            },
+                            {
                                 pattern: "@generics/**",
                                 group: "external",
                                 position: "after",
@@ -111,6 +116,7 @@ module.exports = {
                         "@icons",
                         "./node_modules/@material-symbols/svg-400/rounded",
                     ],
+                    ["@lambda", "./src/tools/lambda"],
                 ],
                 extensions: [".ts", ".vue"],
             },

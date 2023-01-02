@@ -6,7 +6,8 @@
         "paths": {
             "@/*": ["./src/*"],
             "@generics/*": ["./src/components/generics/*"],
-            "@icons/*": ["./node_modules/@material-symbols/svg-400/rounded/*"]
+            "@icons/*": ["./node_modules/@material-symbols/svg-400/rounded/*"],
+            "@lambda": ["./src/tools/lambda"]
         }
     },
 
