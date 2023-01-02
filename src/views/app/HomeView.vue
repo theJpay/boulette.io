@@ -1,8 +1,12 @@
 <template>
-    <div class="home">
-        <h1>Hello {{ user?.displayName }}</h1>
+    <div v-if="user" class="home">
+        <TypewriterEffect
+            class="user-name"
+            fixedText="Hi, "
+            :movingText="user.name"
+        />
         <LinkAction
-            v-if="!isVerified"
+            v-if="!user.emailVerified"
             title="Verification email"
             @click="onSendVerificationEmail()"
         />
@@ -11,19 +15,20 @@
 
 <script lang="ts">
     import { defineComponent } from "vue";
+    import { LinkAction } from "@generics/actions";
+    import { TypewriterEffect } from "@generics/text";
     import { sendVerificationEmail, useAuthState } from "@/services/users";
-    import { LinkAction } from "@/components/generics/actions";
 
     export default defineComponent({
-        components: { LinkAction },
+        components: { LinkAction, TypewriterEffect },
         setup() {
-            const { user, isVerified } = useAuthState();
+            const { user } = useAuthState();
 
             const onSendVerificationEmail = async () => {
                 await sendVerificationEmail();
             };
 
-            return { isVerified, onSendVerificationEmail, user };
+            return { onSendVerificationEmail, user };
         },
     });
 </script>
@@ -34,5 +39,12 @@
         flex-direction: column;
         gap: 8px;
         align-items: center;
+
+        padding: 64px;
+
+        .user-name {
+            font-weight: 600;
+            font-size: 48px;
+        }
     }
 </style>
