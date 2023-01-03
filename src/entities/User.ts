@@ -1,17 +1,13 @@
-import type { User as FirebaseUser } from "firebase/auth";
+export type DbUser = {
+    pseudo: string;
+};
 
 export class User {
-    private firebaseUser: FirebaseUser;
+    id: string;
+    pseudo: string;
 
-    constructor(firebaseUser: FirebaseUser) {
-        this.firebaseUser = firebaseUser;
-    }
-
-    get name() {
-        return this.firebaseUser.displayName || `${this.firebaseUser.uid}`;
-    }
-
-    get emailVerified() {
-        return this.firebaseUser.emailVerified;
+    constructor(id: string, dbUser: DbUser) {
+        this.id = id;
+        this.pseudo = dbUser.pseudo || id.toString();
     }
 }

@@ -6,9 +6,8 @@ service cloud.firestore {
         }
 
         match /users/{userId} {
-            allow write: if uidIsUser(request, userId)
-                && request.resource.data.pseudo.size() >= 4
-                && request.resource.data.pseudo.size() <= 16
+            allow create, update: if uidIsUser(request, userId) && userIsValid(request)
+            allow delete: if uidIsUser(request, userId)
             allow read: if uidIsUser(request, userId)
         }
 
@@ -23,9 +22,7 @@ service cloud.firestore {
     }
 }
 
-function uidIsUser(req, id) {
-    return req.auth.uid == id
-}
+// generics
 function uidIsAuthor(req, doc) {
     return req.auth.uid == doc.data.authorId
 }
@@ -34,4 +31,18 @@ function dataKeysAreValid(req, fields) {
 }
 function keysAreUnchanged(req, doc, keys) {
     return req.resource.data.diff(doc.data).unchangedKeys().hasAll(keys)
+}
+
+// users
+function uidIsUser(req, id) {
+    return req.auth.uid == id
+}
+function userIsValid(req) {
+    return dataKeysAreValid(req, ["pseudo"])
+        && pseudoIsValid(req)
+}
+function pseudoIsValid(req) {
+    return req.resource.data.pseudo is string
+        && req.resource.data.pseudo.size() >= 4
+        && req.resource.data.pseudo.size() <= 16
 }

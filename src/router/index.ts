@@ -50,7 +50,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from, next) => {
     const isAuthenticated = await isAuthenticatedUser();
-    console.log({ isAuthenticated });
     const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
     const requiresUnAuth = to.matched.some(
         (record) => record.meta.requiresUnAuth
