@@ -65,9 +65,9 @@
             };
             const register = async () => {
                 await createUser(
+                    form.value.pseudo,
                     form.value.email,
-                    form.value.password,
-                    form.value.pseudo
+                    form.value.password
                 );
                 router.push({ name: "home" });
             };
