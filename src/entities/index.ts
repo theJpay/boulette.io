@@ -1,4 +1,3 @@
-export { User } from "./User";
-export type { DbUser } from "./User";
+export { DbUser, User } from "./User";
 
 export { UserAuth } from "./UserAuth";

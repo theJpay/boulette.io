@@ -1,9 +1,10 @@
 import { doc, setDoc } from "firebase/firestore";
+import type { WithFieldValue } from "firebase/firestore";
 
-export async function set<T extends Record<string, any>>(
+export async function set<T>(
     collection: string,
     id: string,
-    data: Partial<Omit<T, "id">>
+    data: WithFieldValue<Partial<T>>
 ) {
     await setDoc(doc(db, collection, id), data);
 }
