@@ -1,4 +1,4 @@
-export { useUserAuth } from "./compositions";
+export { useUser, useUserAuth } from "./compositions";
 
 export { createUser } from "./createUser";
 export { fetchUser } from "./fetchUser";
