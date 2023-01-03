@@ -16,6 +16,9 @@ module.exports = {
     parserOptions: {
         ecmaVersion: "latest",
     },
+    globals: {
+        db: true,
+    },
     overrides: [
         {
             files: ["*.vue", "*.ts", "*.js"],
@@ -63,7 +66,10 @@ module.exports = {
                         ignoreDeclarationSort: true,
                     },
                 ],
-                "@typescript-eslint/consistent-type-imports": "warn",
+                "@typescript-eslint/consistent-type-imports": [
+                    "error",
+                    { fixStyle: "separate-type-imports" },
+                ],
                 "@typescript-eslint/no-unused-vars": ["error"],
             },
         },
