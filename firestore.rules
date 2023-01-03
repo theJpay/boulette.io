@@ -1,0 +1,37 @@
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/documents {
+        match /{document=**} {
+            allow read, write: if false;
+        }
+
+        match /users/{userId} {
+            allow write: if uidIsUser(request, userId)
+                && request.resource.data.pseudo.size() >= 4
+                && request.resource.data.pseudo.size() <= 16
+            allow read: if uidIsUser(request, userId)
+        }
+
+        match /documents/{documentId} {
+            allow create: if uidIsAuthor(request, request.resource)
+                && dataKeysAreValid(request, ["authorId", "createdAt", "title"])
+            allow update: if uidIsAuthor(request, resource)
+                && dataKeysAreValid(request, ["updatedAt", "title"])
+            allow delete: if uidIsAuthor(request, resource)
+            allow read: if uidIsAuthor(request, resource)
+        }
+    }
+}
+
+function uidIsUser(req, id) {
+    return req.auth.uid == id
+}
+function uidIsAuthor(req, doc) {
+    return req.auth.uid == doc.data.authorId
+}
+function dataKeysAreValid(req, fields) {
+    return req.resource.data.keys().hasOnly(fields)
+}
+function keysAreUnchanged(req, doc, keys) {
+    return req.resource.data.diff(doc.data).unchangedKeys().hasAll(keys)
+}
