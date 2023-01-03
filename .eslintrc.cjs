@@ -56,6 +56,7 @@ module.exports = {
                                 position: "after",
                             },
                         ],
+                        pathGroupsExcludedImportTypes: ["type"],
                     },
                 ],
                 indent: ["error", 4],
@@ -93,14 +94,7 @@ module.exports = {
                         baseIndent: 1,
                     },
                 ],
-                "vue/html-self-closing": [
-                    "warn",
-                    {
-                        html: {
-                            void: "always",
-                        },
-                    },
-                ],
+                "vue/html-self-closing": ["warn", { html: { void: "always" } }],
                 "vue/sort-keys": ["error", "asc", { caseSensitive: false }],
                 "vue/v-on-event-hyphenation": [
                     "error",

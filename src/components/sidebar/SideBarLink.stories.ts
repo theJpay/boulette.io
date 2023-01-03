@@ -24,6 +24,8 @@ export const SideBarItemStory: StoryFn<typeof SideBarItem> = (args) => ({
         };
         return { props: { ...defaultProps, ...args } };
     },
-    template: '<div style="width: 280px"><SideBarItem v-bind="props" /></div>',
+    template: `
+        <div style="width: 280px"><SideBarItem v-bind="props" /></div>
+    `,
 });
 SideBarItemStory.storyName = "SideBarItem";

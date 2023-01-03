@@ -1,7 +1,7 @@
 <template>
-    <a class="link-action" :href="href" rel="noopener" :target="target">{{
-        title
-    }}</a>
+    <a class="link-action" :href="href" rel="noopener" :target="target">
+        {{ title }}
+    </a>
 </template>
 
 <script lang="ts">

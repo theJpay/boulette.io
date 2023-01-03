@@ -3,11 +3,11 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "dev": "vite",
+        "dev": "vite --mode emulators",
         "build": "run-p type-check build-only",
         "preview": "vite preview",
         "build-only": "vite build",
-        "fb": "firebase emulators:start",
+        "fb": "firebase emulators:start --import ./firebase-database --export-on-exit",
         "type-check": "vue-tsc --noEmit",
         "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore && stylelint \"**/*.(vue|scss|css)\"",
         "sb": "start-storybook -p 6006",
