@@ -15,6 +15,7 @@ const routes: Array<RouteRecordRaw> = [
         redirect: { name: "home" },
         meta: { requiresAuth: true },
     },
+    // TODO: Split two apps between landing and application
     {
         path: "/login",
         name: "login",

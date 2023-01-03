@@ -1,28 +1,39 @@
 <template>
     <div>
+        <Suspense>
+            <AppHeader />
+        </Suspense>
         <SideBar />
         <div class="app">
-            <router-view />
+            <Suspense>
+                <RouterView />
+            </Suspense>
         </div>
     </div>
 </template>
 
 <script lang="ts">
     import { defineComponent } from "vue";
+    import { AppHeader } from "@/components/header";
     import { SideBar } from "@/components/sidebar";
 
     export default defineComponent({
         components: {
+            AppHeader,
             SideBar,
-        },
-        setup() {
-            return {};
         },
     });
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .app {
-        margin-left: 180px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: start;
+        margin-top: 64px;
+        margin-left: 280px;
+
+        padding: 64px;
     }
 </style>

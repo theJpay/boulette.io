@@ -61,7 +61,7 @@
 <style lang="scss" scoped>
     .sidebar {
         position: fixed;
-        top: 0;
+        top: 64px;
         bottom: 0;
         left: 0;
         z-index: 1;
@@ -72,6 +72,8 @@
         float: left;
         width: 280px;
         padding: 100px 0;
+
+        box-shadow: 4px 0 5px rgba(#000, 0.1);
 
         .sign-out {
             margin-top: auto;
