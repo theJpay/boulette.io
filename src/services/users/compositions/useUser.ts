@@ -2,13 +2,13 @@ import { doc, onSnapshot } from "firebase/firestore";
 import { onMounted, onUnmounted, ref } from "vue";
 import { assertDocumentExists } from "@/database";
 import { User } from "@/entities";
+import { getAuthCurrentUser } from "@/services/auth/getAuthCurrentUser";
 import { fetchUser } from "../fetchUser";
-import { useUserAuth } from "./useUserAuth";
 import type { DbUser } from "@/entities";
 import type { DocumentSnapshot, Unsubscribe } from "firebase/firestore";
 
 export async function useUser() {
-    const { userAuth } = useUserAuth();
+    const currentUser = getAuthCurrentUser();
 
     let unsubscribe: Unsubscribe;
     onMounted(() => {
@@ -23,6 +23,6 @@ export async function useUser() {
     });
     onUnmounted(() => unsubscribe());
 
-    const user = ref(await fetchUser(userAuth.value.id));
+    const user = ref(await fetchUser(currentUser.uid));
     return { user };
 }

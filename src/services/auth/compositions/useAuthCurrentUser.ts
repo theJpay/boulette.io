@@ -1,28 +1,27 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { onMounted, onUnmounted, ref } from "vue";
-import { UserAuth } from "@/entities";
-import { AuthenticationError } from "../auth";
-import type { Auth, Unsubscribe } from "firebase/auth";
+import { CurrentUserMissingError } from "../errors";
+import type { Auth, Unsubscribe, User } from "firebase/auth";
 
-export function useUserAuth() {
+export function useAuthCurrentUser() {
     const auth = getAuth();
-    const userAuth = ref<UserAuth>(buildUser(auth.currentUser));
+    const authCurrentUser = ref<User>(buildUser(auth.currentUser));
     const error = ref<Error | null>(null);
 
     let unsubscribe: Unsubscribe;
     onMounted(() => {
         unsubscribe = onAuthStateChanged(
             auth,
-            (u) => (userAuth.value = buildUser(u)),
+            (u) => (authCurrentUser.value = buildUser(u)),
             (e) => (error.value = e)
         );
     });
     onUnmounted(() => unsubscribe());
 
-    return { userAuth, error };
+    return { authCurrentUser, error };
 }
 
 function buildUser(user: Auth["currentUser"]) {
-    if (!user) throw new AuthenticationError();
-    return new UserAuth(user);
+    if (!user) throw new CurrentUserMissingError("useUserAuth");
+    return user;
 }

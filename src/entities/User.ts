@@ -1,14 +1,9 @@
-export class DbUser {
+export type DbUser = {
     pseudo: string;
-
-    constructor(user: User) {
-        this.pseudo = user.pseudo;
-    }
-
-    static buildUpdate(user: Partial<User>) {
-        const { pseudo } = user;
-        return { pseudo };
-    }
+};
+export function formatUserToDatabase(user: Partial<User>) {
+    const { pseudo } = user;
+    return { pseudo };
 }
 
 export class User {

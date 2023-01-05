@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import tools from "@/tools";
-import { isAuthenticatedUser } from "@/services/users";
+import { isCurrentUserAuthenticated } from "@/services/auth";
 import appRoutes from "../views/app/routes";
 import AppView from "../views/AppView.vue";
 import LoginView from "../views/LoginView.vue";
@@ -50,7 +50,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from, next) => {
-    const isAuthenticated = await isAuthenticatedUser();
+    const isAuthenticated = await isCurrentUserAuthenticated();
     const requiresAuth = to.matched.some((record) => record.meta.requiresAuth);
     const requiresUnAuth = to.matched.some(
         (record) => record.meta.requiresUnAuth

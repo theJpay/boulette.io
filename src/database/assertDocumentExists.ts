@@ -1,4 +1,4 @@
-import { DocumentNotFoundError } from "./DocumentNotFoundError";
+import { DocumentNotFoundError } from "./errors/DocumentNotFoundError";
 import type { DocumentData, DocumentSnapshot } from "firebase/firestore";
 
 export function assertDocumentExists<T extends DocumentData>(
