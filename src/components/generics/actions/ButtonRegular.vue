@@ -3,10 +3,9 @@
         class="button-regular"
         :class="{
             [`${impact}-impact`]: true,
-            disabled,
         }"
-        type="button"
-        @click.prevent="onClick()"
+        :disabled="disabled"
+        :type="type"
     >
         {{ title }}
     </button>
@@ -16,7 +15,7 @@
     import { defineComponent } from "vue";
     import type { PropType } from "vue";
 
-    type ButtonImpact = "high" | "medium" | "low";
+    type ButtonImpact = "high" | "low";
 
     export default defineComponent({
         props: {
@@ -26,15 +25,10 @@
                 default: "high",
             },
             title: String,
-        },
-        emits: ["click"],
-        setup(props, { emit }) {
-            const onClick = () => {
-                if (props.disabled) return;
-                emit("click");
-            };
-
-            return { onClick };
+            type: {
+                type: String as PropType<"button" | "submit">,
+                default: "button",
+            },
         },
     });
 </script>
@@ -56,7 +50,7 @@
             background-color: $background-hover;
         }
 
-        &.disabled {
+        &:disabled {
             color: var(--neutral-300);
 
             background-color: $background-disabled;
@@ -88,13 +82,13 @@
         &.low-impact {
             @include buttonRegularColors(
                 var(--primary-600),
-                var(transparent),
+                transparent,
                 var(--neutral-5),
-                var(transparent)
+                transparent
             );
         }
 
-        &.disabled {
+        &:disabled {
             cursor: default;
         }
     }

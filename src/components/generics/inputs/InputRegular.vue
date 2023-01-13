@@ -3,9 +3,10 @@
         ref="input"
         class="input-regular remove-default-input-style"
         :disabled="disabled"
+        novalidate="true"
+        placeholder=" "
         :value="modelValue"
         @input="onInput($event)"
-        @keyup.enter="onReturn($event)"
     />
 </template>
 
@@ -64,13 +65,16 @@
         font-size: 13px;
         line-height: 20px;
 
-        background-color: var(--neutral-5);
         border: 1px solid var(--neutral-50);
         border-radius: 18px;
 
         transition: background-color var(--duration-transition),
             border-color var(--duration-transition),
             color var(--duration-transition);
+
+        &:placeholder-shown {
+            background-color: var(--neutral-5);
+        }
 
         &:hover {
             border-color: var(--neutral-100);
@@ -86,6 +90,12 @@
 
             background-color: var(--neutral-5);
             border-color: transparent;
+        }
+
+        // Needs to stay the same as in FormField.vue
+        &:invalid:not(:focus):not(:placeholder-shown) {
+            background-color: var(--neutral-0);
+            border-color: red;
         }
     }
 </style>

@@ -8,7 +8,7 @@ export default {
         disabled: { type: "boolean" },
         impact: {
             control: { type: "select" },
-            options: ["high", "medium", "low"],
+            options: ["high", "low"],
         },
         title: { type: "string" },
         onClick: { action: "click", table: { disable: true } },

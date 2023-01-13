@@ -1,8 +1,5 @@
 <template>
     <CardBorder class="login-card">
-        <div class="title">
-            {{ title }}
-        </div>
         <div class="form">
             <template v-for="field in config" :key="field.title">
                 <FormField :title="field.title">

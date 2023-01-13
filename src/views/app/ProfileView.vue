@@ -1,7 +1,7 @@
 <template>
     <div v-if="isSelf">
         This is your profile page
-        <InputRegular v-model="tempUser.pseudo" @return="onSave()" />
+        <InputRegular v-model="tempUser.pseudo" @keyup.enter="onSave()" />
     </div>
     <div v-else>This is the profile page of "{{ userId }}"</div>
 </template>
