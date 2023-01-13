@@ -31,6 +31,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: start;
+        min-height: 100vh;
         margin-top: 64px;
         margin-left: 280px;
 

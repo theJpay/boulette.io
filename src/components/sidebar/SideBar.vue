@@ -27,7 +27,7 @@
     import draftIcon from "@icons/draft.svg";
     import logoutIcon from "@icons/logout.svg";
     import settingsIcon from "@icons/settings.svg";
-    import { signOut as signOutUser } from "@/services/users";
+    import { signOutUser } from "@/services/auth";
     import SideBarItem from "./SideBarItem.vue";
 
     const SIDEBAR_ITEMS = [

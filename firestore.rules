@@ -12,19 +12,20 @@ service cloud.firestore {
         }
 
         match /documents/{documentId} {
-            allow create: if uidIsAuthor(request, request.resource)
+            allow create: if uidIsAuthorAndVerified(request, request.resource)
                 && dataKeysAreValid(request, ["authorId", "createdAt", "title"])
-            allow update: if uidIsAuthor(request, resource)
+            allow update: if uidIsAuthorAndVerified(request, resource)
                 && dataKeysAreValid(request, ["updatedAt", "title"])
-            allow delete: if uidIsAuthor(request, resource)
-            allow read: if uidIsAuthor(request, resource)
+            allow delete: if uidIsAuthorAndVerified(request, resource)
+            allow read: if uidIsAuthorAndVerified(request, resource)
         }
     }
 }
 
 // generics
-function uidIsAuthor(req, doc) {
+function uidIsAuthorAndVerified(req, doc) {
     return req.auth.uid == doc.data.authorId
+        && req.auth.token.email_verified
 }
 function dataKeysAreValid(req, fields) {
     return req.resource.data.keys().hasOnly(fields)

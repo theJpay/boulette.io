@@ -1,8 +1,7 @@
 import tools from "@/tools";
 
-const HomeView = () => import(/* webpackChunkName: "home" */ "./HomeView.vue");
-const ProfileView = () =>
-    import(/* webpackChunkName: "profile" */ "./ProfileView.vue");
+const HomeView = () => import("./HomeView.vue");
+const ProfileView = () => import("./ProfileView.vue");
 
 export default [
     {

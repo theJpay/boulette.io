@@ -1,5 +1,5 @@
 export function setTabName(title = "") {
-    const tabName = `${getPrefix(title)}Boulette.io`;
+    const tabName = `${getPrefix(title)}Boulette.app`;
     if (document.title === tabName) {
         return;
     }

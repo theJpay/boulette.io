@@ -10,7 +10,7 @@
                 Please verify your account if you want to use this app.
             </div>
             <ButtonRegular
-                v-if="!userAuth.verified"
+                v-if="authCurrentUser.emailVerified"
                 class="send-email-button"
                 title="Send verification email"
                 @click="onSendVerificationEmail()"
@@ -23,16 +23,13 @@
     import { defineComponent } from "vue";
     import { ButtonRegular } from "@generics/actions";
     import { TypewriterEffect } from "@generics/text";
-    import {
-        sendVerificationEmail,
-        useUser,
-        useUserAuth,
-    } from "@/services/users";
+    import { useUser } from "@/services/users";
+    import { sendVerificationEmail, useAuthCurrentUser } from "@/services/auth";
 
     export default defineComponent({
         components: { ButtonRegular, TypewriterEffect },
         async setup() {
-            const { userAuth } = useUserAuth();
+            const { authCurrentUser } = useAuthCurrentUser();
             const { user } = await useUser();
             // const user = ref(await fetchUser(userAuth.value.id));
 
@@ -40,7 +37,7 @@
                 await sendVerificationEmail();
             };
 
-            return { onSendVerificationEmail, user, userAuth };
+            return { authCurrentUser, onSendVerificationEmail, user };
         },
     });
 </script>

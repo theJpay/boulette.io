@@ -18,7 +18,7 @@
     import { useRouter } from "vue-router";
     import { ButtonRegular } from "@generics/actions";
     import { FormCard } from "@/components/userForm";
-    import { signIn } from "@/services/users";
+    import { signInUser } from "@/services/auth";
 
     const LOGIN_FIELDS = [
         {
@@ -48,7 +48,7 @@
             });
 
             const login = async () => {
-                await signIn(form.value.email, form.value.password);
+                await signInUser(form.value.email, form.value.password);
                 router.push({ name: "home" });
             };
             const goToRegister = () => {
@@ -65,6 +65,6 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        min-height: 100vh;
     }
 </style>

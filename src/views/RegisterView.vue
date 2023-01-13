@@ -1,6 +1,6 @@
 <template>
     <div class="register-view">
-        <FormCard v-model:form="form" :config="config" title="Boulette.io">
+        <FormCard v-model:form="form" :config="config" title="Boulette.app">
             <template #actions>
                 <div class="actions">
                     <ButtonRegular title="Register" @click="register()" />
@@ -83,7 +83,7 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100vh;
+        min-height: 100vh;
 
         .actions {
             display: flex;
