@@ -1,1 +1,2 @@
-export { User } from "./User";
+export { formatUserToDatabase, User } from "./User";
+export type { DbUser } from "./User";

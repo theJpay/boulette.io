@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+    match /databases/{database}/documents {
+        match /{document=**} {
+            allow read, write: if false;
+        }
+
+        match /users/{userId} {
+            allow create, update: if uidIsUser(request, userId) && userIsValid(request)
+            allow delete: if uidIsUser(request, userId)
+            allow read: if uidIsUser(request, userId)
+        }
+
+        match /documents/{documentId} {
+            allow create: if uidIsAuthor(request, request.resource)
+                && dataKeysAreValid(request, ["authorId", "createdAt", "title"])
+            allow update: if uidIsAuthor(request, resource)
+                && dataKeysAreValid(request, ["updatedAt", "title"])
+            allow delete: if uidIsAuthor(request, resource)
+            allow read: if uidIsAuthor(request, resource)
+        }
+    }
+}
+
+// generics
+function uidIsAuthor(req, doc) {
+    return req.auth.uid == doc.data.authorId
+}
+function dataKeysAreValid(req, fields) {
+    return req.resource.data.keys().hasOnly(fields)
+}
+function keysAreUnchanged(req, doc, keys) {
+    return req.resource.data.diff(doc.data).unchangedKeys().hasAll(keys)
+}
+
+// users
+function uidIsUser(req, id) {
+    return req.auth.uid == id
+}
+function userIsValid(req) {
+    return dataKeysAreValid(req, ["pseudo"])
+        && pseudoIsValid(req)
+}
+function pseudoIsValid(req) {
+    return req.resource.data.pseudo is string
+        && req.resource.data.pseudo.size() >= 4
+        && req.resource.data.pseudo.size() <= 16
+}

@@ -9,6 +9,10 @@ export default {
 
 export const CardBorderStory: StoryFn<typeof CardBorder> = () => ({
     components: { CardBorder, StorySlot },
-    template: `<CardBorder style="padding: 8px;"><StorySlot colored style="height: 100px; width: 100px;" /></CardBorder>`,
+    template: `
+        <CardBorder style="padding: 8px;">
+            <StorySlot colored style="height: 100px; width: 100px;" />
+        </CardBorder>
+    `,
 });
 CardBorderStory.storyName = "CardBorder";

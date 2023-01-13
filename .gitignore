@@ -8,7 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Firebase config
-src/services/firebaseConfig.ts
+src/database/firebaseConfig.ts
+
+# Firebase local storage for emulators
+firebase-database
 
 node_modules
 .DS_Store

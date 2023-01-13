@@ -16,6 +16,9 @@ module.exports = {
     parserOptions: {
         ecmaVersion: "latest",
     },
+    globals: {
+        db: true,
+    },
     overrides: [
         {
             files: ["*.vue", "*.ts", "*.js"],
@@ -53,6 +56,7 @@ module.exports = {
                                 position: "after",
                             },
                         ],
+                        pathGroupsExcludedImportTypes: ["type"],
                     },
                 ],
                 indent: ["error", 4],
@@ -63,7 +67,10 @@ module.exports = {
                         ignoreDeclarationSort: true,
                     },
                 ],
-                "@typescript-eslint/consistent-type-imports": "warn",
+                "@typescript-eslint/consistent-type-imports": [
+                    "error",
+                    { fixStyle: "separate-type-imports" },
+                ],
                 "@typescript-eslint/no-unused-vars": ["error"],
             },
         },
@@ -87,14 +94,7 @@ module.exports = {
                         baseIndent: 1,
                     },
                 ],
-                "vue/html-self-closing": [
-                    "warn",
-                    {
-                        html: {
-                            void: "always",
-                        },
-                    },
-                ],
+                "vue/html-self-closing": ["warn", { html: { void: "always" } }],
                 "vue/sort-keys": ["error", "asc", { caseSensitive: false }],
                 "vue/v-on-event-hyphenation": [
                     "error",
